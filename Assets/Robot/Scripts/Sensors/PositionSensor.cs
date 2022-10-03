@@ -19,8 +19,6 @@ public class PositionSensor : MonoBehaviour
     [Tooltip("Frame of the link whose position is measured")]
     private string _frame = "link";
 
-    private uint _seq = 0;
-
     // Start is called before the first frame update
     void Start()
     {

@@ -26,7 +26,7 @@ public class ROSSubscriber<T> where T : Unity.Robotics.ROSTCPConnector.MessageGe
     public ROSSubscriber(string topic = "")
     {
         Topic = topic;
-        ROSConnection.instance.Subscribe<T>(topic, Callback);
+        ROSConnection.GetOrCreateInstance().Subscribe<T>(topic, Callback);
         ListAllTopicsWindow.SubscriberTopics.Add(new ListAllTopicsWindow.TopicInfo(Topic, typeof(T)));
     }
 

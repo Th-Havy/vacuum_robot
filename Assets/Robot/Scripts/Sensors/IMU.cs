@@ -2,7 +2,7 @@ using UnityEngine;
 using Unity.Robotics.ROSTCPConnector.ROSGeometry;
 
 [RequireComponent(typeof(ArticulationBody))]
-public class ImuMsg : MonoBehaviour
+public class IMU : MonoBehaviour
 {
     /// <summary>
     /// As detailled in the <see href="http://docs.ros.org/en/melodic/api/sensor_msgs/html/msg/ImuMsg.html"> documentation </see>

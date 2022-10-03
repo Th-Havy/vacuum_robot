@@ -23,8 +23,6 @@ public class JointStatePublisher : MonoBehaviour
 
     private List<RetrievedJoint> _retrivedJoints;
 
-    private uint _seq = 0;
-
     void Start()
     {
         RetrieveJoints();

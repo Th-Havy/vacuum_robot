@@ -78,7 +78,6 @@ public class Lidar : MonoBehaviour
         }
     }
 
-    private uint scanSeq = 0;
     private bool isScanning = false; 
     private ScanMode scanMode = ScanMode.SingleScan;
     private float _timeFirstMeasurement = 0f;

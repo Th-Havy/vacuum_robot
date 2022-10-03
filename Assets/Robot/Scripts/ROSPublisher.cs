@@ -38,7 +38,7 @@ public class ROSPublisher<T> where T : Unity.Robotics.ROSTCPConnector.MessageGen
     {
         if (publishMessages && Topic != "")
         {
-            ROSConnection.instance.Send(Topic, message);
+            ROSConnection.GetOrCreateInstance().Publish(Topic, message);
             ListAllTopicsWindow.PublisherTopics.Add(new ListAllTopicsWindow.TopicInfo(Topic, typeof(T)));
         }
 

@@ -23,7 +23,6 @@ public class KeyboardTeleoperation : MonoBehaviour
     private BaseCollisionSensor _collisionSensor;
 
     private State _state = State.Forward;
-    private float _turnAngle = 0f;
 
     void Start()
     {

@@ -77,8 +77,6 @@ public class IRSensor : MonoBehaviour
     [Tooltip("Frame in which the distance is measured.")]
     private string frame = "ir_sensor";
 
-    private uint seq = 0;
-
     public float LastMeasuredRange { get; private set; }
 
     private GameObject _coneChild;
