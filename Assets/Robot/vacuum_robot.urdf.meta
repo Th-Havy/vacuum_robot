@@ -1,0 +1,210 @@
+fileFormatVersion: 2
+guid: 1df9e836d5795e545ade1ed607ea3f21
+ScriptedImporter:
+  internalIDToNameTable: []
+  externalObjects: {}
+  serializedVersion: 2
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+  script: {fileID: 11500000, guid: 23f62239a16f79e4aae16236f9993326, type: 3}
+  _xmlData: "<?xml version=\"1.0\" encoding=\"utf-8\"?>\r\n<robot name=\"vacuum_robot\">\r\n\r\n 
+    <!-- Materials -->\r\n  <material name=\"casing\">\r\n    <color rgba=\"0.1792
+    0.1792 0.1792 1\" />\r\n  </material>\r\n  <material name=\"gold\">\r\n    <color
+    rgba=\"0.6784 0.4344 0.1764 1\" />\r\n  </material>\r\n  <material name=\"matt_plastic\">\r\n   
+    <color rgba=\"0 0 0 1\" />\r\n  </material>\r\n  <material name=\"led\">\r\n   
+    <color rgba=\"0.1792 1 0 1\" />\r\n  </material>\r\n  <material name=\"rubber\">\r\n   
+    <color rgba=\"0.2358 0.2358 0.2358 1\" />\r\n  </material>\r\n\r\n  <!-- Links
+    -->\r\n  <link name=\"odom\" />\r\n  <link name=\"base\">\r\n    <inertial>\r\n     
+    <origin rpy=\"0 0 0\" xyz=\"0 0 0.05\" />\r\n      <mass value=\"2.9\" />\r\n     
+    <inertia ixx=\"0.0058840261772275\" ixy=\"0\" ixz=\"0\" iyy=\"0.0058840261772275\"
+    iyz=\"0\" izz=\"0.0111680533736944\" />\r\n    </inertial>\r\n    <visual name=\"base\">\r\n     
+    <origin rpy=\"0 0 -1.570796\" xyz=\"0 0 0.02\" />\r\n      <geometry>\r\n       
+    <mesh filename=\"package://vacuum_robot/meshes/base.obj\" scale=\"0.001 0.001
+    0.001\" />\r\n      </geometry>\r\n      <material name=\"casing\"/>\r\n    </visual>\r\n   
+    <visual name=\"base_ring\">\r\n      <origin rpy=\"0 0 0\" xyz=\"0 0 0.076\"
+    />\r\n      <geometry>\r\n        <mesh filename=\"package://vacuum_robot/meshes/base_ring.obj\"
+    scale=\"0.001 0.001 0.001\" />\r\n      </geometry>\r\n      <material name=\"gold\"/>\r\n   
+    </visual>\r\n    <collision>\r\n      <origin xyz=\"0 0 0.05\" />\r\n      <geometry>\r\n       
+    <cylinder length=\"0.06\" radius=\"0.15\" />\r\n      </geometry>\r\n    </collision>\r\n 
+    </link>\r\n  <link name=\"status_led\">\r\n    <inertial>\r\n      <origin rpy=\"0
+    0 0\" xyz=\"0 0 0.0025\" />\r\n      <mass value=\"0.01\" />\r\n      <inertia
+    ixx=\"8.28780866868328E-06\" ixy=\"0\" ixz=\"0\" iyy=\"8.28780866868328E-06\"
+    iyz=\"0\" izz=\"1.24089465316501E-05\" />\r\n    </inertial>\r\n    <visual>\r\n     
+    <origin rpy=\"0 0 0\" />\r\n      <geometry>\r\n        <mesh filename=\"package://vacuum_robot/meshes/status_led.obj\"
+    scale=\"0.001 0.001 0.001\" />\r\n      </geometry>\r\n      <material name=\"led\"/>\r\n   
+    </visual>\r\n    <collision>\r\n      <origin xyz=\"0 0 0.0025\" />\r\n     
+    <geometry>\r\n        <cylinder length=\"0.005\" radius=\"0.005\" />\r\n     
+    </geometry>\r\n    </collision>\r\n  </link>\r\n  <link name=\"power_button\">\r\n   
+    <inertial>\r\n      <origin rpy=\"0 0 0\" xyz=\"0 0 0.0025\" />\r\n      <mass
+    value=\"0.01\" />\r\n      <inertia ixx=\"2.69012289209059E-05\" ixy=\"0\" ixz=\"0\"
+    iyy=\"2.69012289209059E-05\" iyz=\"0\" izz=\"4.96357861266006E-05\" />\r\n   
+    </inertial>\r\n    <visual>\r\n      <geometry>\r\n        <mesh filename=\"package://vacuum_robot/meshes/power_button.obj\"
+    scale=\"0.001 0.001 0.001\" />\r\n      </geometry>\r\n      <material name=\"casing\"/>\r\n   
+    </visual>\r\n    <collision>\r\n      <origin xyz=\"0 0 0.0025\" />\r\n     
+    <geometry>\r\n        <cylinder length=\"0.005\" radius=\"0.01\" />\r\n     
+    </geometry>\r\n    </collision>\r\n  </link>\r\n  <link name=\"left_wheel\">\r\n   
+    <inertial>\r\n      <origin rpy=\"0 0 0\" xyz=\"0 0 0\" />\r\n      <mass value=\"0.3\"
+    />\r\n      <inertia ixx=\"0.000256694474956021\" ixy=\"0\" ixz=\"0\" iyy=\"0.000446722202468663\"
+    iyz=\"0\" izz=\"0.000256694358540699\" />\r\n    </inertial>\r\n    <visual name=\"wheel\">\r\n     
+    <origin rpy=\"1.570796 0 0\" xyz=\"0 0.01 0\" />\r\n      <geometry>\r\n       
+    <mesh filename=\"package://vacuum_robot/meshes/wheel.obj\" scale=\"0.001 0.001
+    0.001\" />\r\n      </geometry>\r\n      <material name=\"matt_plastic\"/>\r\n   
+    </visual>\r\n    <visual name=\"tire\">\r\n      <origin rpy=\"1.570796 0 0\"
+    xyz=\"0 0.01 0\" />\r\n      <geometry>\r\n        <mesh filename=\"package://vacuum_robot/meshes/tire.obj\"
+    scale=\"0.001 0.001 0.001\" />\r\n      </geometry>\r\n      <material name=\"rubber\"/>\r\n   
+    </visual>\r\n    <collision>\r\n      <origin rpy=\"1.570796 0 0\" />\r\n     
+    <geometry>\r\n        <cylinder length=\"0.02\" radius=\"0.03\" />\r\n      </geometry>\r\n   
+    </collision>\r\n  </link>\r\n  <link name=\"right_wheel\">\r\n    <inertial>\r\n     
+    <origin rpy=\"0 0 0\" xyz=\"0 0 0\" />\r\n      <mass value=\"0.3\" />\r\n     
+    <inertia ixx=\"0.000256694474956021\" ixy=\"0\" ixz=\"0\" iyy=\"0.000446722202468663\"
+    iyz=\"0\" izz=\"0.000256694358540699\" />\r\n    </inertial>\r\n    <visual name=\"wheel\">\r\n     
+    <origin rpy=\"1.570796 0 0\" xyz=\"0 0.01 0\" />\r\n      <geometry>\r\n       
+    <mesh filename=\"package://vacuum_robot/meshes/wheel.obj\" scale=\"0.001 0.001
+    0.001\" />\r\n      </geometry>\r\n      <material name=\"matt_plastic\"/>\r\n   
+    </visual>\r\n    <visual name=\"tire\">\r\n      <origin rpy=\"1.570796 0 0\"
+    xyz=\"0 0.01 0\" />\r\n      <geometry>\r\n        <mesh filename=\"package://vacuum_robot/meshes/tire.obj\"
+    scale=\"0.001 0.001 0.001\" />\r\n      </geometry>\r\n      <material name=\"rubber\"/>\r\n   
+    </visual>\r\n    <collision>\r\n      <origin rpy=\"1.570796 0 0\" />\r\n     
+    <geometry>\r\n        <cylinder length=\"0.02\" radius=\"0.03\" />\r\n      </geometry>\r\n   
+    </collision>\r\n  </link>\r\n  <link name=\"bearing_support_wheel\">\r\n    <inertial>\r\n     
+    <origin rpy=\"0 0 0\" xyz=\"0 0 -0.0105\" />\r\n      <mass value=\"0.1\" />\r\n     
+    <inertia ixx=\"6.15678873145953E-05\" ixy=\"0\" ixz=\"0\" iyy=\"6.15678873145953E-05\"
+    iyz=\"0\" izz=\"4.96357824886218E-05\" />\r\n    </inertial>\r\n    <visual>\r\n     
+    <origin rpy=\"0 0 0\" />\r\n      <geometry>\r\n        <mesh filename=\"package://vacuum_robot/meshes/bearing_support_wheel.obj\"
+    scale=\"0.001 0.001 0.001\" />\r\n      </geometry>\r\n      <material name=\"matt_plastic\"/>\r\n   
+    </visual>\r\n    <collision>\r\n      <origin xyz=\"0 0 -0.0105\" />\r\n     
+    <geometry>\r\n        <cylinder length=\"0.021\" radius=\"0.01\" />\r\n     
+    </geometry>\r\n    </collision>\r\n  </link>\r\n  <link name=\"support_wheel\">\r\n   
+    <inertial>\r\n      <origin rpy=\"0 0 0\" xyz=\"0 0 0\" />\r\n      <mass value=\"0.01\"
+    />\r\n      <inertia ixx=\"1.00000006568735E-05\" ixy=\"0\" ixz=\"0\" iyy=\"1.00000006568735E-05\"
+    iyz=\"0\" izz=\"1.00000006568735E-05\" />\r\n    </inertial>\r\n    <visual>\r\n     
+    <geometry>\r\n        <mesh filename=\"package://vacuum_robot/meshes/support_wheel.obj\"
+    scale=\"0.001 0.001 0.001\" />\r\n      </geometry>\r\n      <material name=\"rubber\"/>\r\n   
+    </visual>\r\n    <collision>\r\n      <geometry>\r\n        <sphere radius=\"0.005\"
+    />\r\n      </geometry>\r\n    </collision>\r\n  </link>\r\n  <link name=\"lidar_casing\">\r\n   
+    <inertial>\r\n      <origin rpy=\"0 0 0\" xyz=\"0 0 0.015\" />\r\n      <mass
+    value=\"0.15\" />\r\n      <inertia ixx=\"0.000298361119348556\" ixy=\"0\" ixz=\"0\"
+    iyy=\"0.000298361119348556\" iyz=\"0\" izz=\"0.000446722115157172\" />\r\n   
+    </inertial>\r\n    <visual name=\"lidar_casing_side\">\r\n      <origin rpy=\"0
+    0 0.44\" />\r\n      <geometry>\r\n        <mesh filename=\"package://vacuum_robot/meshes/lidar_casing_side.obj\"
+    scale=\"0.001 0.001 0.001\" />\r\n      </geometry>\r\n      <material name=\"gold\"/>\r\n   
+    </visual>\r\n    <visual name=\"lidar_casing_top\">\r\n      <origin xyz=\"0
+    0 0.029\" />\r\n      <geometry>\r\n        <mesh filename=\"package://vacuum_robot/meshes/lidar_casing_top.obj\"
+    scale=\"0.001 0.001 0.001\" />\r\n      </geometry>\r\n      <material name=\"casing\"/>\r\n   
+    </visual>\r\n    <collision>\r\n      <origin xyz=\"0 0 0.015\" />\r\n      <geometry>\r\n       
+    <cylinder length=\"0.03\" radius=\"0.03\" />\r\n      </geometry>\r\n    </collision>\r\n 
+    </link>\r\n  <link name=\"lidar\">\r\n    <inertial>\r\n      <origin rpy=\"0
+    0 0\" xyz=\"0 0 0\" />\r\n      <mass value=\"0.05\" />\r\n      <inertia ixx=\"0.000176284447661601\"
+    ixy=\"0\" ixz=\"0\" iyy=\"0.000176284447661601\" iyz=\"0\" izz=\"0.000285902176983655\"
+    />\r\n    </inertial>\r\n    <visual>\r\n      <origin rpy=\"0 0 1.570796\" xyz=\"0
+    0 -0.01\" />\r\n      <geometry>\r\n        <mesh filename=\"package://vacuum_robot/meshes/lidar.obj\"
+    scale=\"0.001 0.001 0.001\" />\r\n      </geometry>\r\n      <material name=\"matt_plastic\"/>\r\n   
+    </visual>\r\n    <collision>\r\n      <geometry>\r\n        <cylinder length=\"0.02\"
+    radius=\"0.024\" />\r\n      </geometry>\r\n    </collision>\r\n  </link>\r\n 
+    <link name=\"ir_sensor_front\">\r\n    <inertial>\r\n      <origin rpy=\"0 0
+    0\" xyz=\"0 0 0.0025\" />\r\n      <mass value=\"0.01\" />\r\n      <inertia
+    ixx=\"8.28780866868328E-06\" ixy=\"0\" ixz=\"0\" iyy=\"8.28780866868328E-06\"
+    iyz=\"0\" izz=\"1.24089465316501E-05\" />\r\n    </inertial>\r\n    <visual>\r\n     
+    <geometry>\r\n        <mesh filename=\"package://vacuum_robot/meshes/ir_sensor.obj\"
+    scale=\"0.001 0.001 0.001\" />\r\n      </geometry>\r\n      <material name=\"matt_plastic\"/>\r\n   
+    </visual>\r\n    <collision>\r\n      <origin xyz=\"0 0 0.0025\" />\r\n     
+    <geometry>\r\n        <cylinder length=\"0.005\" radius=\"0.005\" />\r\n     
+    </geometry>\r\n    </collision>\r\n  </link>\r\n  <link name=\"ir_sensor_front_left\">\r\n   
+    <inertial>\r\n      <origin rpy=\"0 0 0\" xyz=\"0 0 0.0025\" />\r\n      <mass
+    value=\"0.01\" />\r\n      <inertia ixx=\"8.28780866868328E-06\" ixy=\"0\" ixz=\"0\"
+    iyy=\"8.28780866868328E-06\" iyz=\"0\" izz=\"1.24089465316501E-05\" />\r\n   
+    </inertial>\r\n    <visual>\r\n      <geometry>\r\n        <mesh filename=\"package://vacuum_robot/meshes/ir_sensor.obj\"
+    scale=\"0.001 0.001 0.001\" />\r\n      </geometry>\r\n      <material name=\"matt_plastic\"/>\r\n   
+    </visual>\r\n    <collision>\r\n      <origin xyz=\"0 0 0.0025\" />\r\n     
+    <geometry>\r\n        <cylinder length=\"0.005\" radius=\"0.005\" />\r\n     
+    </geometry>\r\n    </collision>\r\n  </link>\r\n  <link name=\"ir_sensor_front_right\">\r\n   
+    <inertial>\r\n      <origin rpy=\"0 0 0\" xyz=\"0 0 0.0025\" />\r\n      <mass
+    value=\"0.01\" />\r\n      <inertia ixx=\"8.28780866868328E-06\" ixy=\"0\" ixz=\"0\"
+    iyy=\"8.28780866868328E-06\" iyz=\"0\" izz=\"1.24089465316501E-05\" />\r\n   
+    </inertial>\r\n    <visual>\r\n      <geometry>\r\n        <mesh filename=\"package://vacuum_robot/meshes/ir_sensor.obj\"
+    scale=\"0.001 0.001 0.001\" />\r\n      </geometry>\r\n      <material name=\"matt_plastic\"/>\r\n   
+    </visual>\r\n    <collision>\r\n      <origin xyz=\"0 0 0.0025\" />\r\n     
+    <geometry>\r\n        <cylinder length=\"0.005\" radius=\"0.005\" />\r\n     
+    </geometry>\r\n    </collision>\r\n  </link>\r\n  <link name=\"ir_sensor_back\">\r\n   
+    <inertial>\r\n      <origin rpy=\"0 0 0\" xyz=\"0 0 0.0025\" />\r\n      <mass
+    value=\"0.01\" />\r\n      <inertia ixx=\"8.28780866868328E-06\" ixy=\"0\" ixz=\"0\"
+    iyy=\"8.28780866868328E-06\" iyz=\"0\" izz=\"1.24089465316501E-05\" />\r\n   
+    </inertial>\r\n    <visual>\r\n      <geometry>\r\n        <mesh filename=\"package://vacuum_robot/meshes/ir_sensor.obj\"
+    scale=\"0.001 0.001 0.001\" />\r\n      </geometry>\r\n      <material name=\"matt_plastic\"/>\r\n   
+    </visual>\r\n    <collision>\r\n      <origin xyz=\"0 0 0.0025\" />\r\n     
+    <geometry>\r\n        <cylinder length=\"0.005\" radius=\"0.005\" />\r\n     
+    </geometry>\r\n    </collision>\r\n  </link>\r\n  <link name=\"ir_sensor_back_left\">\r\n   
+    <inertial>\r\n      <origin rpy=\"0 0 0\" xyz=\"0 0 0.0025\" />\r\n      <mass
+    value=\"0.01\" />\r\n      <inertia ixx=\"8.28780866868328E-06\" ixy=\"0\" ixz=\"0\"
+    iyy=\"8.28780866868328E-06\" iyz=\"0\" izz=\"1.24089465316501E-05\" />\r\n   
+    </inertial>\r\n    <visual>\r\n      <geometry>\r\n        <mesh filename=\"package://vacuum_robot/meshes/ir_sensor.obj\"
+    scale=\"0.001 0.001 0.001\" />\r\n      </geometry>\r\n      <material name=\"matt_plastic\"/>\r\n   
+    </visual>\r\n    <collision>\r\n      <origin xyz=\"0 0 0.0025\" />\r\n     
+    <geometry>\r\n        <cylinder length=\"0.005\" radius=\"0.005\" />\r\n     
+    </geometry>\r\n    </collision>\r\n  </link>\r\n  <link name=\"ir_sensor_back_right\">\r\n   
+    <inertial>\r\n      <origin rpy=\"0 0 0\" xyz=\"0 0 0.0025\" />\r\n      <mass
+    value=\"0.01\" />\r\n      <inertia ixx=\"8.28780866868328E-06\" ixy=\"0\" ixz=\"0\"
+    iyy=\"8.28780866868328E-06\" iyz=\"0\" izz=\"1.24089465316501E-05\" />\r\n   
+    </inertial>\r\n    <visual>\r\n      <geometry>\r\n        <mesh filename=\"package://vacuum_robot/meshes/ir_sensor.obj\"
+    scale=\"0.001 0.001 0.001\" />\r\n      </geometry>\r\n      <material name=\"matt_plastic\"/>\r\n   
+    </visual>\r\n    <collision>\r\n      <origin xyz=\"0 0 0.0025\" />\r\n     
+    <geometry>\r\n        <cylinder length=\"0.005\" radius=\"0.005\" />\r\n     
+    </geometry>\r\n    </collision>\r\n  </link>\r\n\r\n  <!--Disable_Collisions
+    -->\r\n  <disable_collision link1=\"base\" link2=\"lidar\"/>\r\n\r\n  <!-- Joints
+    -->\r\n  <joint name=\"odom_base_joint\" type=\"fixed\">\r\n    <parent link=\"odom\"/>\r\n    
+    <child link=\"base\"/>\r\n  </joint>\r\n  <joint name=\"base_status_led_joint\"
+    type=\"fixed\">\r\n    <origin xyz=\"0 0 0.075\" />\r\n    <parent link=\"base\"
+    />\r\n    <child link=\"status_led\" />\r\n  </joint>\r\n  <joint name=\"base_power_button_joint\"
+    type=\"fixed\">\r\n    <origin xyz=\"-0.1 0 0.075\" />\r\n    <parent link=\"base\"
+    />\r\n    <child link=\"power_button\" />\r\n  </joint>\r\n  <joint name=\"base_left_wheel_joint\"
+    type=\"continuous\">\r\n    <origin xyz=\"0 0.12 0.03\" />\r\n    <parent link=\"base\"
+    />\r\n    <child link=\"left_wheel\" />\r\n    <axis xyz=\"0 1 0\" />\r\n   
+    <dynamics damping=\"0.05\" friction=\"0.05\" />\r\n  </joint>\r\n  <joint name=\"base_right_wheel_joint\"
+    type=\"continuous\">\r\n    <origin xyz=\"0 -0.12 0.03\" />\r\n    <parent link=\"base\"
+    />\r\n    <child link=\"right_wheel\" />\r\n    <axis xyz=\"0 1 0\" />\r\n   
+    <dynamics damping=\"0.05\" friction=\"0.05\" />\r\n  </joint>\r\n  <joint name=\"base_bearing_support_wheel_joint\"
+    type=\"fixed\">\r\n    <origin xyz=\"0.1 0 0.025\" />\r\n    <parent link=\"base\"
+    />\r\n    <child link=\"bearing_support_wheel\" />\r\n  </joint>\r\n  <joint
+    name=\"bearing_support_wheel_support_wheel_joint\" type=\"fixed\">\r\n    <origin
+    xyz=\"0 0 -0.02\" />\r\n    <parent link=\"bearing_support_wheel\" />\r\n   
+    <child link=\"support_wheel\" />\r\n  </joint>\r\n  <joint name=\"base_lidar_casing_joint\"
+    type=\"prismatic\">\r\n    <origin xyz=\"0.1 0 0.05\" />\r\n    <parent link=\"base\"
+    />\r\n    <child link=\"lidar_casing\" />\r\n    <axis xyz=\"0 0 1\" />\r\n   
+    <dynamics damping=\"0.05\" friction=\"0.05\" />\r\n    <limit lower=\"0\" upper=\"0.02\"
+    effort=\"3.40282346638529E+38\" velocity=\"100\" />\r\n  </joint>\r\n  <joint
+    name=\"lidar_casing_lidar_joint\" type=\"continuous\">\r\n    <origin xyz=\"0
+    0 0.015\" />\r\n    <parent link=\"lidar_casing\" />\r\n    <child link=\"lidar\"
+    />\r\n    <axis xyz=\"0 0 1\" />\r\n    <dynamics damping=\"0.05\" friction=\"0.05\"
+    />\r\n  </joint>\r\n  <joint name=\"base_ir_sensor_front_joint\" type=\"fixed\">\r\n   
+    <origin xyz=\"0.13 0 0.02\" />\r\n    <parent link=\"base\" />\r\n    <child
+    link=\"ir_sensor_front\" />\r\n  </joint>\r\n  <joint name=\"base_ir_sensor_front_left_joint\"
+    type=\"fixed\">\r\n    <origin xyz=\"0.065 0.112583 0.02\" />\r\n    <parent
+    link=\"base\" />\r\n    <child link=\"ir_sensor_front_left\" />\r\n  </joint>\r\n 
+    <joint name=\"base_ir_sensor_front_right_joint\" type=\"fixed\">\r\n    <origin
+    xyz=\"0.065 -0.112583 0.02\" />\r\n    <parent link=\"base\" />\r\n    <child
+    link=\"ir_sensor_front_right\" />\r\n  </joint>\r\n  <joint name=\"base_ir_sensor_back_joint\"
+    type=\"fixed\">\r\n    <origin xyz=\"-0.13 0 0.02\" />\r\n    <parent link=\"base\"
+    />\r\n    <child link=\"ir_sensor_back\" />\r\n  </joint>\r\n  <joint name=\"base_ir_sensor_back_left_joint\"
+    type=\"fixed\">\r\n    <origin xyz=\"-0.065 0.112583 0.02\" />\r\n    <parent
+    link=\"base\" />\r\n    <child link=\"ir_sensor_back_left\" />\r\n  </joint>\r\n 
+    <joint name=\"base_ir_sensor_back_right_joint\" type=\"fixed\">\r\n    <origin
+    xyz=\"-0.065 -0.112583 0.02\" />\r\n    <parent link=\"base\" />\r\n    <child
+    link=\"ir_sensor_back_right\" />\r\n  </joint>\r\n</robot>"
+  _filepath: Assets/vacuum_robot/vacuum_robot.urdf
+  _remappedMaterials:
+  - {fileID: 2100000, guid: 97c1d778a78471342bfd5d5e7ae2de9c, type: 2}
+  - {fileID: 2100000, guid: 419c795678677b940975533b8a9423be, type: 2}
+  - {fileID: 2100000, guid: 25a8dc7b9d29e5849bb72944e4e258c4, type: 2}
+  - {fileID: 2100000, guid: 1b149b17184f42a4196e1a095c0a82af, type: 2}
+  - {fileID: 2100000, guid: 7a1b5ca30ee4f384b96978139df97a85, type: 2}
+  _settings:
+    choosenAxis: 1
+    convexMethod: 1
+  _robotName: vacuum_robot
+  _materials:
+  - casing
+  - gold
+  - matt_plastic
+  - led
+  - rubber
