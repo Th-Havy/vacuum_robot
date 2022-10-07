@@ -1,12 +1,15 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Unity.Robotics.ROSTCPConnector;
 
 [RequireComponent(typeof(ArticulationBody))]
 public class MotorEncoder : MonoBehaviour
 {
     [Header("ROS settings")]
-    public ROSPublisher<RosMessageTypes.Std.Float32Msg> publisher = new ROSPublisher<RosMessageTypes.Std.Float32Msg>("encoder", true);
+    private ROSConnection _ros;
+    [SerializeField]
+    private string topicName = "encoder";
 
     public float MotorAngle { get; private set; }
 
@@ -14,13 +17,17 @@ public class MotorEncoder : MonoBehaviour
 
     void Start()
     {
+        // start the ROS connection
+        _ros = ROSConnection.GetOrCreateInstance();
+        _ros.RegisterPublisher<RosMessageTypes.Sensor.ImuMsg>(topicName);
+
         _articulationBody = GetComponent<ArticulationBody>();
     }
 
     void FixedUpdate()
     {
         MotorAngle = _articulationBody.jointPosition[0];
-        publisher.Publish(CreateMessage());
+        _ros.Publish(topicName, CreateMessage());
     }
 
     private RosMessageTypes.Std.Float32Msg CreateMessage()

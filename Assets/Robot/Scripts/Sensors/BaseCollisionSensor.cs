@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Unity.Robotics.ROSTCPConnector;
 
 public class BaseCollisionSensor : MonoBehaviour
 {
@@ -13,12 +14,16 @@ public class BaseCollisionSensor : MonoBehaviour
     private float colliderRadius;
 
     [Header("ROS settings")]
-    public ROSPublisher<RosMessageTypes.Std.Float32Msg> publisher = new ROSPublisher<RosMessageTypes.Std.Float32Msg>("collision", true);
+    private ROSConnection _ros;
+    [SerializeField]
+    private string topicName = "base_collision";
 
     // Necessary to have, otherwise the component cannot be disabled in the inspector
     void Start()
     {
-        
+        // start the ROS connection
+        _ros = ROSConnection.GetOrCreateInstance();
+        _ros.RegisterPublisher<RosMessageTypes.Sensor.ImuMsg>(topicName);
     }
 
     void OnCollisionEnter(Collision other)
@@ -52,12 +57,11 @@ public class BaseCollisionSensor : MonoBehaviour
         {
             // Angle between front of base and collision point
             float collisionAngle = -Vector3.SignedAngle(Vector3.forward, averageOnHorizontalPlane, Vector3.up);
-            RosMessageTypes.Std.Float32Msg message = CreateMessage(collisionAngle);
+            _ros.Publish(topicName, CreateMessage(collisionAngle));
 
             // TODO: Create proper visualization component
             Debug.DrawRay(transform.TransformPoint(averageOnHorizontalPlane.normalized * colliderRadius), transform.TransformDirection(averageOnHorizontalPlane.normalized) * 0.1f, Color.red);
 
-            publisher.Publish(message);
         }
     }
 

@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Unity.Robotics.ROSTCPConnector;
 
 /// <summary>
 /// Component simulating a 2D lidar scanner
@@ -53,7 +54,10 @@ public class Lidar : MonoBehaviour
     public GaussianNoise measurementNoise = new GaussianNoise(0f, 0.01f);
 
     [Header("ROS settings")]
-    public ROSPublisher<RosMessageTypes.Sensor.LaserScanMsg> publisher = new ROSPublisher<RosMessageTypes.Sensor.LaserScanMsg>("lidar", true);
+    private ROSConnection _ros;
+    [SerializeField]
+    private string topicName = "lidar";
+    
 
     [SerializeField]
     [Tooltip("Frame in which the scan are measured.")]
@@ -104,6 +108,10 @@ public class Lidar : MonoBehaviour
 
     void Start()
     {
+        // start the ROS connection
+        _ros = ROSConnection.GetOrCreateInstance();
+        _ros.RegisterPublisher<RosMessageTypes.Sensor.LaserScanMsg>(topicName);
+
         RobotController.OpenLidar(true);
 
         motor = GetComponent<ArticulationBody>();
@@ -162,7 +170,7 @@ public class Lidar : MonoBehaviour
             }
 
             RosMessageTypes.Sensor.LaserScanMsg message = CreateLaserScanMessage();
-            publisher.Publish(message);
+            _ros.Publish(topicName, message);
             
             if (scanMode == ScanMode.SingleScan)
             {

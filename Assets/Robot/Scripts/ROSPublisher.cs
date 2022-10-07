@@ -28,17 +28,23 @@ public class ROSPublisher<T> where T : Unity.Robotics.ROSTCPConnector.MessageGen
     /// </summary>
     public MessageEvent onNewMessage;
 
+    private ROSConnection _ros;
+
     public ROSPublisher(string topic = "", bool publishOnROSTopic = true)
     {
         Topic = topic;
         publishMessages = publishOnROSTopic;
+
+        // start the ROS connection
+        _ros = ROSConnection.GetOrCreateInstance();
+        _ros.RegisterPublisher<T>(Topic);
     }
 
     public void Publish(T message)
     {
         if (publishMessages && Topic != "")
         {
-            ROSConnection.GetOrCreateInstance().Publish(Topic, message);
+            _ros.Publish(Topic, message);
             ListAllTopicsWindow.PublisherTopics.Add(new ListAllTopicsWindow.TopicInfo(Topic, typeof(T)));
         }
 

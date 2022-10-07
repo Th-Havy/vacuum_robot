@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Unity.Robotics.ROSTCPConnector;
 using Unity.Robotics.ROSTCPConnector.ROSGeometry;
 
 public class PositionSensor : MonoBehaviour
@@ -9,7 +10,9 @@ public class PositionSensor : MonoBehaviour
     public bool globalPosition = true;
 
     [Header("ROS settings")]
-    public ROSPublisher<RosMessageTypes.Geometry.TransformStampedMsg> publisher = new ROSPublisher<RosMessageTypes.Geometry.TransformStampedMsg>("unity_tf", true);
+    private ROSConnection _ros;
+    [SerializeField]
+    private string topicName = "unity_tf";
 
     [SerializeField]
     [Tooltip("Frame in which the position is measured.")]
@@ -19,16 +22,17 @@ public class PositionSensor : MonoBehaviour
     [Tooltip("Frame of the link whose position is measured")]
     private string _frame = "link";
 
-    // Start is called before the first frame update
     void Start()
     {
-        
+        // start the ROS connection
+        _ros = ROSConnection.GetOrCreateInstance();
+        _ros.RegisterPublisher<RosMessageTypes.Geometry.TransformStampedMsg>(topicName);
     }
 
     // Update is called once per frame
     void Update()
     {
-        publisher.Publish(CreateMessage());
+        _ros.Publish(topicName, CreateMessage());
     }
 
     private RosMessageTypes.Geometry.TransformStampedMsg CreateMessage()

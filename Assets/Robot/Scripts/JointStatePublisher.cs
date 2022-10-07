@@ -1,7 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using Unity.Robotics.UrdfImporter;
+using Unity.Robotics.ROSTCPConnector;
 
 /// <summary>
 /// This component will publish all of the robots non-fixed joint states.
@@ -15,22 +15,27 @@ public class JointStatePublisher : MonoBehaviour
     }
 
     [Header("ROS settings")]
+    private ROSConnection _ros;
+    [SerializeField]
+    private string topicName = "joint_states";
     public bool includePosition = true;
     public bool includeVelocity = true;
     public bool includeEffort = true;
-
-    public ROSPublisher<RosMessageTypes.Sensor.JointStateMsg> publisher = new ROSPublisher<RosMessageTypes.Sensor.JointStateMsg>("joint_states", true);
 
     private List<RetrievedJoint> _retrivedJoints;
 
     void Start()
     {
         RetrieveJoints();
+
+        // start the ROS connection
+        _ros = ROSConnection.GetOrCreateInstance();
+        _ros.RegisterPublisher<RosMessageTypes.Sensor.JointStateMsg>(topicName);
     }
 
     void FixedUpdate()
     {
-        publisher.Publish(CreateMessage());
+        _ros.Publish(topicName, CreateMessage());
     }
 
     private void RetrieveJoints()

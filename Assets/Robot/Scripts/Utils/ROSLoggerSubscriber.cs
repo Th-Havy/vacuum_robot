@@ -3,6 +3,8 @@ using Unity.Robotics.ROSTCPConnector;
 
 public class ROSLoggerSubscriber : MonoBehaviour
 {
+    private ROSConnection _ros;
+    
     public enum MessageType
     {
         Bool,
@@ -47,6 +49,9 @@ public class ROSLoggerSubscriber : MonoBehaviour
 
     private void Start()
     {
+        // start the ROS connection
+        _ros = ROSConnection.GetOrCreateInstance();
+
         switch (TopicType)
         {
             case MessageType.Bool:
@@ -154,7 +159,7 @@ public class ROSLoggerSubscriber : MonoBehaviour
     private void AddLoger<T>() where T : Unity.Robotics.ROSTCPConnector.MessageGeneration.Message, new()
     {
         Debug.Log("Subscribed to: " + Topic);
-        ROSConnection.GetOrCreateInstance().Subscribe<T>(Topic, LogCallback);
+        _ros.Subscribe<T>(Topic, LogCallback);
         ListAllTopicsWindow.SubscriberTopics.Add(new ListAllTopicsWindow.TopicInfo(Topic, typeof(T)));
     }
 

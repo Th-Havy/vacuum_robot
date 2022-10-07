@@ -20,15 +20,12 @@ public class KeyboardTeleoperation : MonoBehaviour
     public float backwardDistance = 0.1f;
 
     private LowLevelController _controller;
-    private BaseCollisionSensor _collisionSensor;
 
     private State _state = State.Forward;
 
     void Start()
     {
         _controller = GetComponent<LowLevelController>();
-        _collisionSensor = GetComponentInChildren<BaseCollisionSensor>(true);
-        _collisionSensor.publisher.onNewMessage.AddListener(HandleBaseCollision);
     }
 
     void FixedUpdate()

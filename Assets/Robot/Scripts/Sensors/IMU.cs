@@ -1,4 +1,5 @@
 using UnityEngine;
+using Unity.Robotics.ROSTCPConnector;
 using Unity.Robotics.ROSTCPConnector.ROSGeometry;
 
 [RequireComponent(typeof(ArticulationBody))]
@@ -32,7 +33,9 @@ public class IMU : MonoBehaviour
     private Matrix3x3 _linearAccelerationCovariance = new Matrix3x3(0);
 
     [Header("ROS settings")]
-    public ROSPublisher<RosMessageTypes.Sensor.ImuMsg> publisher = new ROSPublisher<RosMessageTypes.Sensor.ImuMsg>("ImuMsg", true);
+    private ROSConnection _ros;
+    [SerializeField]
+    private string topicName = "imu";
 
     [SerializeField]
     [Tooltip("Frame in which the ImuMsg operates.")]
@@ -44,6 +47,10 @@ public class IMU : MonoBehaviour
 
     void Start()
     {
+        // start the ROS connection
+        _ros = ROSConnection.GetOrCreateInstance();
+        _ros.RegisterPublisher<RosMessageTypes.Sensor.ImuMsg>(topicName);
+
         _articulationBody = GetComponent<ArticulationBody>();
         _oldVelocity = _articulationBody.velocity;
     }
@@ -65,7 +72,7 @@ public class IMU : MonoBehaviour
             LinearAcceleration = (_articulationBody.velocity - _oldVelocity) / Time.fixedDeltaTime;
         }
 
-        publisher.Publish(CreateImuMsgMessage());
+        _ros.Publish(topicName, CreateImuMsgMessage());
     }
 
     private RosMessageTypes.Sensor.ImuMsg CreateImuMsgMessage()

@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Unity.Robotics.ROSTCPConnector;
 
 public class IRSensor : MonoBehaviour
 {
@@ -71,7 +72,9 @@ public class IRSensor : MonoBehaviour
     public float maxDetectedSurfaceAngle = 90f;
     
     [Header("ROS settings")]
-    public ROSPublisher<RosMessageTypes.Sensor.RangeMsg> publisher = new ROSPublisher<RosMessageTypes.Sensor.RangeMsg>("ir_sensor", true);
+    private ROSConnection _ros;
+    [SerializeField]
+    private string topicName = "ir_sensor";
 
     [SerializeField]
     [Tooltip("Frame in which the distance is measured.")]
@@ -86,6 +89,10 @@ public class IRSensor : MonoBehaviour
 
     void Start()
     {
+        // start the ROS connection
+        _ros = ROSConnection.GetOrCreateInstance();
+        _ros.RegisterPublisher<RosMessageTypes.Sensor.ImuMsg>(topicName);
+
         _coneChild = new GameObject("Cone");
         _coneChild.tag = "robot";
         _coneChild.transform.parent = transform;
@@ -115,7 +122,7 @@ public class IRSensor : MonoBehaviour
         LastMeasuredRange = distance;
         RosMessageTypes.Sensor.RangeMsg message = CreateRangeMessage();
 
-        publisher.Publish(message);
+        _ros.Publish(topicName, CreateRangeMessage());
 
         // Reset cone intersection distance for this fixed update step
         _closestDistanceIntersectingObject = Mathf.Infinity;

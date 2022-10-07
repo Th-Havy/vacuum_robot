@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Unity.Robotics.ROSTCPConnector;
 
 [RequireComponent(typeof(Lidar))]
 public class LidarVisualizer : MonoBehaviour
@@ -20,6 +21,11 @@ public class LidarVisualizer : MonoBehaviour
     List<Color> colors;
     List<int> triangles;
 
+    [Header("ROS settings")]
+    private ROSConnection _ros;
+    [SerializeField]
+    private string topicName = "lidar";
+
     void Start()
     {
         // Create sibling GameObject to display the lidar measurements
@@ -31,7 +37,8 @@ public class LidarVisualizer : MonoBehaviour
         meshRenderer.material = pointMaterial;
 
         lidar = GetComponent<Lidar>();
-        lidar.publisher.onNewMessage.AddListener(BuildScanMesh);
+        _ros = ROSConnection.GetOrCreateInstance();
+        _ros.Subscribe<RosMessageTypes.Sensor.LaserScanMsg>(topicName, BuildScanMesh);
     }
 
     void BuildScanMesh(RosMessageTypes.Sensor.LaserScanMsg message)
