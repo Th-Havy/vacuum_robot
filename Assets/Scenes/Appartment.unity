@@ -9340,21 +9340,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 701840923491883988, guid: 926f33351ff0803409aa147edef8795c,
-        type: 3}
-      propertyPath: linearVelocity
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 701840923491883988, guid: 926f33351ff0803409aa147edef8795c,
-        type: 3}
-      propertyPath: angularVelocity
-      value: 3
-      objectReference: {fileID: 0}
-    - target: {fileID: 701840923491883989, guid: 926f33351ff0803409aa147edef8795c,
-        type: 3}
-      propertyPath: m_Enabled
-      value: 0
-      objectReference: {fileID: 0}
     - target: {fileID: 7806105677782228917, guid: 926f33351ff0803409aa147edef8795c,
         type: 3}
       propertyPath: m_RootOrder

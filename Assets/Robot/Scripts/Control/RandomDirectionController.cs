@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Unity.Robotics.ROSTCPConnector;
 
 [RequireComponent(typeof(LowLevelController))]
 public class RandomDirectionController : MonoBehaviour
@@ -23,8 +24,18 @@ public class RandomDirectionController : MonoBehaviour
 
     private State _state = State.Forward;
 
+    [Header("ROS settings")]
+    private ROSConnection _ros;
+    [SerializeField]
+    private string topicName = "base_collision";
+
+    // Necessary to have, otherwise the component cannot be disabled in the inspector
     void Start()
     {
+        // start the ROS connection
+        _ros = ROSConnection.GetOrCreateInstance();
+        _ros.Subscribe<RosMessageTypes.Std.Float32Msg>(topicName, HandleBaseCollision);
+
         _controller = GetComponent<LowLevelController>();
     }
 
@@ -53,6 +64,7 @@ public class RandomDirectionController : MonoBehaviour
 
     void HandleBaseCollision(RosMessageTypes.Std.Float32Msg message)
     {
-
+        Debug.Log("Collision angle: " + message.data.ToString());
+        _state = State.Backward;
     }
 }

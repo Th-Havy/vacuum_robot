@@ -23,7 +23,7 @@ public class BaseCollisionSensor : MonoBehaviour
     {
         // start the ROS connection
         _ros = ROSConnection.GetOrCreateInstance();
-        _ros.RegisterPublisher<RosMessageTypes.Sensor.ImuMsg>(topicName);
+        _ros.RegisterPublisher<RosMessageTypes.Std.Float32Msg>(topicName);
     }
 
     void OnCollisionEnter(Collision other)
