@@ -24,6 +24,11 @@ public class RandomDirectionController : MonoBehaviour
 
     private State _state = State.Forward;
 
+    private float _collisionTime = 0f;
+    private float _collisionAngle = 0f;
+    private float _turnTime = 0f;
+    private float _targetAngle = 0f;
+
     [Header("ROS settings")]
     private ROSConnection _ros;
     [SerializeField]
@@ -52,10 +57,23 @@ public class RandomDirectionController : MonoBehaviour
             case State.Backward:
                 _controller.LinearVelocity = -linearVelocity;
                 _controller.AngularVelocity = 0f;
+
+                if ((Time.time - _collisionTime) * linearVelocity > backwardDistance)
+                {
+                    _state = State.Turn;
+                    _targetAngle = Random.Range(-3.14f, 3.14f);
+                    _turnTime = Time.time;
+                }
+
                 break;
             case State.Turn:
                 _controller.LinearVelocity = 0f;
                 _controller.AngularVelocity = angularVelocity;
+
+                if ((Time.time - _turnTime) * angularVelocity > _targetAngle)
+                {
+                    _state = State.Forward;
+                }
                 break;
             default:
                 break;
@@ -64,7 +82,8 @@ public class RandomDirectionController : MonoBehaviour
 
     void HandleBaseCollision(RosMessageTypes.Std.Float32Msg message)
     {
-        Debug.Log("Collision angle: " + message.data.ToString());
         _state = State.Backward;
+        _collisionTime = Time.time;
+        _collisionAngle = message.data;
     }
 }
