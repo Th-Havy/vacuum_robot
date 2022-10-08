@@ -3121,12 +3121,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   baseCollider: {fileID: 7806105676254098994}
   colliderRadius: 0.15
-  publisher:
-    publishMessages: 1
-    <Topic>k__BackingField: collision
-    onNewMessage:
-      m_PersistentCalls:
-        m_Calls: []
+  topicName: base_collision
 --- !u!114 &7806105677802526804
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3175,12 +3170,7 @@ MonoBehaviour:
     - 0
     - 0
     - 0
-  publisher:
-    publishMessages: 1
-    <Topic>k__BackingField: imu
-    onNewMessage:
-      m_PersistentCalls:
-        m_Calls: []
+  topicName: imu
   frame: base
 --- !u!114 &701840923182130389
 MonoBehaviour:
@@ -3195,12 +3185,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   globalPosition: 1
-  publisher:
-    publishMessages: 1
-    <Topic>k__BackingField: unity_tf
-    onNewMessage:
-      m_PersistentCalls:
-        m_Calls: []
+  topicName: unity_tf
   _referenceFrame: base_link
   _frame: base
 --- !u!1 &7806105676490963999
@@ -3310,7 +3295,7 @@ ArticulationBody:
   m_Enabled: 1
   serializedVersion: 3
   m_Mass: 0.01
-  m_ParentAnchorPosition: {x: -0.11258304, y: 0.02, z: -0.065}
+  m_ParentAnchorPosition: {x: -0.11258292, y: 0.02, z: -0.065}
   m_ParentAnchorRotation: {x: 0, y: 0, z: 0.70710677, w: 0.70710677}
   m_AnchorPosition: {x: 0, y: 0, z: 0}
   m_AnchorRotation: {x: 0, y: 0, z: 0.70710677, w: 0.70710677}
@@ -3406,12 +3391,7 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 55
   maxDetectedSurfaceAngle: 90
-  publisher:
-    publishMessages: 1
-    <Topic>k__BackingField: ir_sensor_back_left
-    onNewMessage:
-      m_PersistentCalls:
-        m_Calls: []
+  topicName: ir_sensor_back_left
   frame: ir_sensor_back_left
 --- !u!1 &7806105676509688699
 GameObject:
@@ -3925,12 +3905,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 146720d00325f374aadbe0fe08fdf6dd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  publisher:
-    publishMessages: 1
-    <Topic>k__BackingField: encoder_right
-    onNewMessage:
-      m_PersistentCalls:
-        m_Calls: []
+  topicName: encoder_right
 --- !u!1 &7806105676747535234
 GameObject:
   m_ObjectHideFlags: 0
@@ -4088,12 +4063,7 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 55
   maxDetectedSurfaceAngle: 90
-  publisher:
-    publishMessages: 1
-    <Topic>k__BackingField: ir_sensor_front
-    onNewMessage:
-      m_PersistentCalls:
-        m_Calls: []
+  topicName: ir_sensor_front
   frame: ir_sensor_front
 --- !u!1 &7806105676752908009
 GameObject:
@@ -4436,12 +4406,7 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 55
   maxDetectedSurfaceAngle: 90
-  publisher:
-    publishMessages: 1
-    <Topic>k__BackingField: ir_sensor_back_right
-    onNewMessage:
-      m_PersistentCalls:
-        m_Calls: []
+  topicName: ir_sensor_back_right
   frame: ir_sensor_back_right
 --- !u!1 &7806105676829889767
 GameObject:
@@ -4600,12 +4565,7 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 55
   maxDetectedSurfaceAngle: 90
-  publisher:
-    publishMessages: 1
-    <Topic>k__BackingField: ir_sensor_back
-    onNewMessage:
-      m_PersistentCalls:
-        m_Calls: []
+  topicName: ir_sensor_back
   frame: ir_sensor_back
 --- !u!1 &7806105676830664764
 GameObject:
@@ -4714,7 +4674,7 @@ ArticulationBody:
   m_Enabled: 1
   serializedVersion: 3
   m_Mass: 0.05
-  m_ParentAnchorPosition: {x: 0, y: 0.014999997, z: 0}
+  m_ParentAnchorPosition: {x: 0, y: 0.014999997, z: -0.000000007450581}
   m_ParentAnchorRotation: {x: 0, y: 0, z: 0.70710677, w: -0.70710677}
   m_AnchorPosition: {x: 0, y: 0, z: 0}
   m_AnchorRotation: {x: 0, y: 0, z: 0.70710677, w: -0.70710677}
@@ -4816,12 +4776,7 @@ MonoBehaviour:
     seed: 0
     mu: 0
     sigma: 0.01
-  publisher:
-    publishMessages: 1
-    <Topic>k__BackingField: lidar
-    onNewMessage:
-      m_PersistentCalls:
-        m_Calls: []
+  topicName: lidar
   frame: lidar_casing
 --- !u!114 &7806105677802526810
 MonoBehaviour:
@@ -4837,6 +4792,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   pointMaterial: {fileID: 2100000, guid: 92524870db2096b4a92c689af1c3604d, type: 2}
   pointRadius: 0.01
+  topicName: lidar
 --- !u!1 &7806105676872537764
 GameObject:
   m_ObjectHideFlags: 0
@@ -4898,7 +4854,7 @@ ArticulationBody:
   m_Enabled: 1
   serializedVersion: 3
   m_Mass: 0.15
-  m_ParentAnchorPosition: {x: 0, y: 0.05, z: 0.1}
+  m_ParentAnchorPosition: {x: 0, y: 0.05, z: 0.099999994}
   m_ParentAnchorRotation: {x: 0, y: 0, z: 0.70710677, w: 0.70710677}
   m_AnchorPosition: {x: 0, y: 0, z: 0}
   m_AnchorRotation: {x: 0, y: 0, z: 0.70710677, w: 0.70710677}
@@ -5674,7 +5630,7 @@ ArticulationBody:
   m_Enabled: 1
   serializedVersion: 3
   m_Mass: 0.01
-  m_ParentAnchorPosition: {x: -0.11258304, y: 0.02, z: 0.065}
+  m_ParentAnchorPosition: {x: -0.11258292, y: 0.02, z: 0.065}
   m_ParentAnchorRotation: {x: 0, y: 0, z: 0.70710677, w: 0.70710677}
   m_AnchorPosition: {x: 0, y: 0, z: 0}
   m_AnchorRotation: {x: 0, y: 0, z: 0.70710677, w: 0.70710677}
@@ -5770,12 +5726,7 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 55
   maxDetectedSurfaceAngle: 90
-  publisher:
-    publishMessages: 1
-    <Topic>k__BackingField: ir_sensor_front_left
-    onNewMessage:
-      m_PersistentCalls:
-        m_Calls: []
+  topicName: ir_sensor_front_left
   frame: ir_sensor_front_left
 --- !u!1 &7806105677103856831
 GameObject:
@@ -6659,7 +6610,7 @@ ArticulationBody:
   m_Enabled: 1
   serializedVersion: 3
   m_Mass: 0.1
-  m_ParentAnchorPosition: {x: 0, y: 0.025, z: 0.1}
+  m_ParentAnchorPosition: {x: 0, y: 0.025, z: 0.099999994}
   m_ParentAnchorRotation: {x: 0, y: 0, z: 0.70710677, w: 0.70710677}
   m_AnchorPosition: {x: 0, y: 0, z: 0}
   m_AnchorRotation: {x: 0, y: 0, z: 0.70710677, w: 0.70710677}
@@ -6840,8 +6791,6 @@ GameObject:
   - component: {fileID: 701840923550353811}
   - component: {fileID: 701840923491883988}
   - component: {fileID: 701840923491883989}
-  - component: {fileID: 7806105676511481094}
-  - component: {fileID: 7806105676511481095}
   m_Layer: 6
   m_Name: Robot
   m_TagString: robot
@@ -6915,15 +6864,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 55da9944993f63346bf4bba861e40810, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  topicName: joint_states
   includePosition: 1
   includeVelocity: 1
   includeEffort: 1
-  publisher:
-    publishMessages: 1
-    <Topic>k__BackingField: joint_states
-    onNewMessage:
-      m_PersistentCalls:
-        m_Calls: []
 --- !u!114 &701840923491883988
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -6936,9 +6880,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8cbba68d51fc1094abc302cc7a1dd03c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  linearVelocity: 0.4
-  angularVelocity: 1
-  backwardDistance: 0.1
+  linearVelocity: 1
+  angularVelocity: 3
 --- !u!114 &701840923491883989
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -6946,42 +6889,14 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 7806105677782228918}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 3a6fff6bcb026b848a8bd29df01aedb3, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  linearVelocity: 0.4
-  angularVelocity: 1
---- !u!114 &7806105676511481094
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7806105677782228918}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 8cbba68d51fc1094abc302cc7a1dd03c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   linearVelocity: 0.4
   angularVelocity: 1
   backwardDistance: 0.1
---- !u!114 &7806105676511481095
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7806105677782228918}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 3a6fff6bcb026b848a8bd29df01aedb3, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  linearVelocity: 0.4
-  angularVelocity: 1
 --- !u!1 &7806105677784520299
 GameObject:
   m_ObjectHideFlags: 0
@@ -7179,7 +7094,7 @@ ArticulationBody:
   m_Enabled: 1
   serializedVersion: 3
   m_Mass: 0.3
-  m_ParentAnchorPosition: {x: -0.120000005, y: 0.03, z: 0}
+  m_ParentAnchorPosition: {x: -0.119999886, y: 0.03, z: 0}
   m_ParentAnchorRotation: {x: 0, y: 0, z: 0, w: 1}
   m_AnchorPosition: {x: 0, y: 0, z: 0}
   m_AnchorRotation: {x: 0, y: 0, z: 0, w: 1}
@@ -7267,12 +7182,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 146720d00325f374aadbe0fe08fdf6dd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  publisher:
-    publishMessages: 1
-    <Topic>k__BackingField: encoder_left
-    onNewMessage:
-      m_PersistentCalls:
-        m_Calls: []
+  topicName: encoder_left
 --- !u!1 &7806105677946728236
 GameObject:
   m_ObjectHideFlags: 0
@@ -7614,12 +7524,7 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 55
   maxDetectedSurfaceAngle: 90
-  publisher:
-    publishMessages: 1
-    <Topic>k__BackingField: ir_sensor_front_right
-    onNewMessage:
-      m_PersistentCalls:
-        m_Calls: []
+  topicName: ir_sensor_front_right
   frame: ir_sensor_front_right
 --- !u!1 &7806105677996544663
 GameObject:
@@ -8321,7 +8226,7 @@ ArticulationBody:
   m_Enabled: 1
   serializedVersion: 3
   m_Mass: 0.01
-  m_ParentAnchorPosition: {x: 0, y: -0.02, z: 0}
+  m_ParentAnchorPosition: {x: 0, y: -0.02, z: -0.000000007450581}
   m_ParentAnchorRotation: {x: 0, y: 0, z: 0.70710677, w: 0.70710677}
   m_AnchorPosition: {x: 0, y: 0, z: 0}
   m_AnchorRotation: {x: 0, y: 0, z: 0.70710677, w: 0.70710677}
