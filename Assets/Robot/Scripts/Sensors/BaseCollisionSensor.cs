@@ -11,7 +11,7 @@ public class BaseCollisionSensor : MonoBehaviour
 
     [SerializeField]
     [Tooltip("Radius of collider which senses the collisions")]
-    private float colliderRadius;
+    private float colliderRadius = 0.15f;
 
     [Header("ROS settings")]
     private ROSConnection _ros;

@@ -24,6 +24,7 @@ public class RandomDirectionController : MonoBehaviour
 
     private State _state = State.Forward;
 
+    private bool _collisionOccured = false;
     private float _collisionTime = 0f;
     private float _collisionAngle = 0f;
     private float _turnTime = 0f;
@@ -32,22 +33,61 @@ public class RandomDirectionController : MonoBehaviour
     [Header("ROS settings")]
     private ROSConnection _ros;
     [SerializeField]
-    private string topicName = "base_collision";
+    private string baseCollisionTopicName = "base_collision";
 
     // Necessary to have, otherwise the component cannot be disabled in the inspector
     void Start()
     {
         // start the ROS connection
         _ros = ROSConnection.GetOrCreateInstance();
-        _ros.Subscribe<RosMessageTypes.Std.Float32Msg>(topicName, HandleBaseCollision);
+        _ros.Subscribe<RosMessageTypes.Std.Float32Msg>(baseCollisionTopicName, HandleBaseCollision);
 
         _controller = GetComponent<LowLevelController>();
     }
 
-    void FixedUpdate()
+    // Update the state machine
+    void Update() 
+    {
+        switch (_state)
+        {
+            case State.Forward:
+                if (_collisionOccured)
+                {
+                    _collisionOccured = false;
+                    _state = State.Backward;
+                }
+                break;
+            case State.Backward:
+                // Switch to turn states
+                if ((Time.time - _collisionTime) > 3)
+                {
+                    _targetAngle = Random.Range(-Mathf.PI, Mathf.PI);
+
+                    // Switch to turn state
+                    _turnTime = Time.time;
+                    _state = State.Turn;
+                }
+                break;
+            case State.Turn:
+                // Switch back to forward state
+                Debug.Log("Conditions " + ((Time.time - _turnTime) * angularVelocity).ToString() + " " + _targetAngle);
+                if ((Time.time - _turnTime) * angularVelocity > Mathf.Abs(_targetAngle))
+                {
+                    Debug.Log("Switching to forward state");
+                    _state = State.Forward;
+                }
+                break;
+        }
+
+        UpdateLowLevelCommands();
+    }
+
+    void UpdateLowLevelCommands()
     {
         // TODO: read fall prevention sensors to stop forward/backward motion
         // or keep turning until there is no more fall in front
+
+        Debug.Log(_state.ToString() + _targetAngle.ToString());
         switch (_state)
         {
             case State.Forward:
@@ -57,23 +97,10 @@ public class RandomDirectionController : MonoBehaviour
             case State.Backward:
                 _controller.LinearVelocity = -linearVelocity;
                 _controller.AngularVelocity = 0f;
-
-                if ((Time.time - _collisionTime) * linearVelocity > backwardDistance)
-                {
-                    _state = State.Turn;
-                    _targetAngle = Random.Range(-3.14f, 3.14f);
-                    _turnTime = Time.time;
-                }
-
                 break;
             case State.Turn:
                 _controller.LinearVelocity = 0f;
-                _controller.AngularVelocity = angularVelocity;
-
-                if ((Time.time - _turnTime) * angularVelocity > _targetAngle)
-                {
-                    _state = State.Forward;
-                }
+                _controller.AngularVelocity = Mathf.Sign(_targetAngle) * angularVelocity;
                 break;
             default:
                 break;
@@ -82,8 +109,11 @@ public class RandomDirectionController : MonoBehaviour
 
     void HandleBaseCollision(RosMessageTypes.Std.Float32Msg message)
     {
-        _state = State.Backward;
-        _collisionTime = Time.time;
-        _collisionAngle = message.data;
+        if (_state == State.Forward)
+        {
+            _collisionOccured = true;
+            _collisionTime = Time.time;
+            _collisionAngle = message.data;
+        }
     }
 }
