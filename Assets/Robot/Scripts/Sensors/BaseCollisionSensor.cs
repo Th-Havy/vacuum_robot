@@ -11,7 +11,7 @@ public class BaseCollisionSensor : MonoBehaviour
 
     [SerializeField]
     [Tooltip("Radius of collider which senses the collisions")]
-    private float colliderRadius;
+    private float colliderRadius = 0.15f;
 
     [Header("ROS settings")]
     private ROSConnection _ros;
@@ -23,7 +23,7 @@ public class BaseCollisionSensor : MonoBehaviour
     {
         // start the ROS connection
         _ros = ROSConnection.GetOrCreateInstance();
-        _ros.RegisterPublisher<RosMessageTypes.Sensor.ImuMsg>(topicName);
+        _ros.RegisterPublisher<RosMessageTypes.Std.Float32Msg>(topicName);
     }
 
     void OnCollisionEnter(Collision other)

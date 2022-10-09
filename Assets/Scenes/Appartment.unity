@@ -9340,20 +9340,35 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 701840923491883988, guid: 926f33351ff0803409aa147edef8795c,
+    - target: {fileID: 701840922973887187, guid: 926f33351ff0803409aa147edef8795c,
         type: 3}
-      propertyPath: linearVelocity
+      propertyPath: m_Enabled
       value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 701840923491883988, guid: 926f33351ff0803409aa147edef8795c,
         type: 3}
-      propertyPath: angularVelocity
-      value: 3
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 701840923491883988, guid: 926f33351ff0803409aa147edef8795c,
+        type: 3}
+      propertyPath: linearVelocity
+      value: 0.4
       objectReference: {fileID: 0}
     - target: {fileID: 701840923491883989, guid: 926f33351ff0803409aa147edef8795c,
         type: 3}
       propertyPath: m_Enabled
-      value: 0
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 701840923491883989, guid: 926f33351ff0803409aa147edef8795c,
+        type: 3}
+      propertyPath: backwardDistance
+      value: 0.1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1997733720813171581, guid: 926f33351ff0803409aa147edef8795c,
+        type: 3}
+      propertyPath: m_Enabled
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 7806105677782228917, guid: 926f33351ff0803409aa147edef8795c,
         type: 3}
@@ -9414,6 +9429,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Robot
+      objectReference: {fileID: 0}
+    - target: {fileID: 7806105678231840065, guid: 926f33351ff0803409aa147edef8795c,
+        type: 3}
+      propertyPath: m_Mass
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 926f33351ff0803409aa147edef8795c, type: 3}
