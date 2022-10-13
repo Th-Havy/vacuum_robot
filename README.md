@@ -2,6 +2,8 @@
 
 A simulation of a vacuum robot in Unity3D and ROS.
 
+![vacuum](readme_images/vacuum.gif)
+
 ## Setup
 
 ### Install Unity Packages
