@@ -59,7 +59,7 @@ public class RandomDirectionController : MonoBehaviour
                 break;
             case State.Backward:
                 // Switch to turn states
-                if ((Time.time - _collisionTime) > 3)
+                if ((Time.time - _collisionTime) * linearVelocity > backwardDistance)
                 {
                     _targetAngle = Random.Range(-Mathf.PI, Mathf.PI);
 

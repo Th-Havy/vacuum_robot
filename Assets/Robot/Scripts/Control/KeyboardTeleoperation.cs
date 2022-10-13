@@ -19,6 +19,6 @@ public class KeyboardTeleoperation : MonoBehaviour
     {
         
         _controller.LinearVelocity = linearVelocity * Input.GetAxis("Vertical");
-        _controller.AngularVelocity = -linearVelocity * Input.GetAxis("Horizontal");
+        _controller.AngularVelocity = -angularVelocity * Input.GetAxis("Horizontal");
     }
 }
